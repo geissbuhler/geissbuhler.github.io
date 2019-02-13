@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<header>Geodesic Distance Calculator</header>
+</head>
+
+<h2>Origin</h2>
+<h4>Latitude</h4>
+<input type="number" id="lat1" value="33.636667"><br>
+<h4>Longitude</h4>
+<input type="number" id="long1" value = "-84.428056"><br>
+<h2>Destination</h2>
+<h4>Latitude</h4>
+<input type="number" id="lat2" value = "-33.392778"><br>
+<h4>Longitude</h4>
+<input type="number" id="long2" value = "-70.85556"><br>
+<script>
+function myFunction() {
+  var lat1 = parseFloat(document.getElementById("lat1").value),
+      long1 = parseFloat(document.getElementById("long1").value),
+      lat2 = parseFloat(document.getElementById("lat2").value),
+      long2 = parseFloat(document.getElementById("long2").value),
+      dist = distCalc(lat1,long1,lat2,long2);
+      document.getElementById("demo").innerHTML = dist.toFixed(4) + " km.";
+  //document.getElementById('demo').innerHTML = phi11
+}
+function miles() {
+  var lat1 = parseFloat(document.getElementById("lat1").value),
+      long1 = parseFloat(document.getElementById("long1").value),
+      lat2 = parseFloat(document.getElementById("lat2").value),
+      long2 = parseFloat(document.getElementById("long2").value),
+      dist = distCalc(lat1,long1,lat2,long2)*0.62137119;
+      document.getElementById("demo").innerHTML = dist.toFixed(4) + " miles";
+}
+
+function distCalc(phi1, l1, phi2, l2) {
+  var a = 6378137.0,
+      f = 1/298.257223563,
+      b = 6356752.314245,
+      //phi1 = 33.636667,
+      //l1 = -84.428056,
+      //phi2 = -33.392778,
+      //l2 = -70.785556,
+      lamda = (l2-l1)*Math.PI/180,
+      L = lamda,
+      u1 = Math.atan((1-f)*Math.tan(phi1*Math.PI/180)),
+      u2 = Math.atan((1-f)*Math.tan(phi2*Math.PI/180)),
+      counter = 1;
+while (counter < 10**6){
+  var sinS = Math.sqrt((Math.cos(u2)*Math.sin(lamda))**2 + (Math.cos(u1)*Math.sin(u2) - Math.sin(u1)*Math.cos(u2)*Math.cos(lamda))**2),
+      cosS = Math.sin(u1)*Math.sin(u2) + Math.cos(u1)*Math.cos(u2)*Math.cos(lamda),
+      sigma = Math.atan2(sinS,cosS),
+      sinA = (Math.cos(u1)*Math.cos(u2)*Math.sin(lamda))/(Math.sin(sigma)),
+      cosASQ = 1 - (sinA**2),
+      cos2SM = Math.cos(sigma) - (2*Math.sin(u1)*Math.sin(u2)/cosASQ),
+      C = (f/16)*cosASQ*(4 + f*(4-(3*cosASQ))),
+      lamda = L + (1-C)*f*sinA*(sigma + C*sinS*(cos2SM+C*cosS*(-1+2*cos2SM**2)));
+      if (counter != 1){
+        if (lamda - lamdaStore <= 10**(-12)){
+          break;
+        }
+      }
+  var lamdaStore = lamda,
+      counter = counter+1;
+}
+  var uSQ = cosASQ*((a**2 - b**2)/b**2),
+      A = 1 + (uSQ/16384)*(4096+uSQ*(-768+uSQ*(320-175*uSQ))),
+      B = (uSQ/1024)*(256 + uSQ*(-128 + uSQ*(74-47*uSQ))),
+      deltaSig = B*sinS*(cos2SM+0.25*B*(cosS*(-1+2*cos2SM**2))-(B/6)*cos2SM*(-3+4*cos2SM**2)),
+      s = b*A*(sigma-deltaSig),
+      alpha1 = Math.atan2(Math.cos(u2)*Math.sin(lamda), Math.cos(u1)*Math.sin(u2)-(Math.sin(u1)*Math.cos(u2)*Math.cos(lamda))),
+      distance = s*10**(-3);
+  return distance;
+}
+</script>
+
+</head>
+<body>
+<div class="center" id="demo">Calculated Distance<br></div>
+<div class="center" id="demo">
+<button onclick="myFunction()">Calculate in kilometers!</button>
+<button onclick="miles()">Calculate in miles!</button></div>
+
+
+</body>
+</html>
