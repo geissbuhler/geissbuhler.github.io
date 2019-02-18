@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="index.html">
+          <img border="0 "src="geossmall.png" height="60px"/>
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="nav navbar-nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a class="active" href="research.html">Research</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="projects.html">Projects</a></li>
+        </ul>
+      </div>
+  </nav>
+</body>
+<div class="jumbotron">
+  <h1>My Research</h1>
+</div>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6">
+        <img class="center-block" src="6degvel.PNG" alt="Me!" width=100% />
+      </div>
+      <div class="col-sm-6">
+        <div class="text-justify">
+          <p class="center">
+            Beginning in April, 2018, I began working on a research project under
+            Professor Lakshmi Sankar. In the project, I worked on CFD verification,
+            comparing CFD results with published results collected from a wind tunnel.
+            In particular, I focued on a NACA 23012 airfoil in Fall 2018. On the left
+            is a velocity contour plot for a NACA 23012 airfoil at an angle of attack
+            of 6 degrees.<br>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row top-buffer"></div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="text-justify">
+          <p class="center">
+            As the plot on the right shows, the technique researched during this
+            process produced accurate data to within a 5-10% margin of error.
+            Another aspect of the research that this plot cannot show is the
+            computation time savings as the result of this process. To produce
+            these results, a Dell XPS-15 workstation with 8 cores, 16 GB of ram,
+            and an internal 2.2-GHz Intel Core i7-8750H processor was used. Total
+            computation time for the 2D airfoil totaled only 5 minutes on average,
+            over 1000 iterations of calculations.
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <img class="center-block" src="data.jpg" width=100% />
+      </div>
+    </div>
+    <div class="row top-buffer"></div>
+    <div class="row">
+      <div class="col-sm-8">
+        <img class="center-block" src="mesh1.PNG" width="100%" />
+        <img class="center-block" src="mesh2.PNG" width="100%" />
+      </div>
+      <div class="col-sm-4">
+        <p class="center">
+          Various methods were used to create the meshes used in the analysis. To
+          learn more about this project, <a href="AE_4699_Report.pdf">please
+          feel free to download the report I wrote.</a>
+        </p>
+      </div>
+  </div>
+  <div class="row top-buffer"></div>
+  <div class="row">
+    <div class="col-sm-4">
+      <p class="center">
+        My current research project has focued on extending the current 2D CFD
+        method to 3D models. More coming soon!
+      </p>
+    </div>
+    <div class="col-sm-8"></div>
+  </div>
+</body>
+
+</html>
