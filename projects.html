@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="mystyle.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
@@ -31,8 +32,10 @@
       </div>
   </nav>
 </body>
-<header>Geodesic Distance Calculator</header>
-<h2>Origin</h2>
+<div class="jumbotron">
+  <h1>More coming soon!</h1>
+</div>
+<!-- <h2>Origin</h2>
 <h4>Latitude</h4>
 <input type="number" id="lat1" value="33.636667"><br>
 <h4>Longitude</h4>
@@ -97,9 +100,71 @@ while (counter < 10**6){
       deltaSig = B*sinS*(cos2SM+0.25*B*(cosS*(-1+2*cos2SM**2))-(B/6)*cos2SM*(-3+4*cos2SM**2)),
       s = b*A*(sigma-deltaSig),
       alpha1 = Math.atan2(Math.cos(u2)*Math.sin(lamda), Math.cos(u1)*Math.sin(u2)-(Math.sin(u1)*Math.cos(u2)*Math.cos(lamda))),
-      distance = s*10**(-3);
-  return distance;
-}
+      distance = s*10**(-3),
+      newLong = l1;
+  //return distance;
+  var bigCount = 1;
+  while (bigCount < Math.round(distance/250)){
+    var sigma1 = Math.atan2(Math.tan(u1),Math.cos(alpha1)),
+        sinA = Math.cos(u1)*Math.sin(alpha1),
+        cosASQ = 1 - sinA**2,
+        uSQ = cosASQ*((a**2 - b**2)/b**2),
+        A = 1+ (uSQ/16384)*(4096+uSQ*(-768+uSQ*(320-175*uSQ))),
+        B = (uSQ/1024)*(256 + uSQ*(-128 + uSQ*(74-47*uSQ)));
+        var counter = 1,
+            s = 250000,
+            sigma = s/(b*a),
+            sigmaStore = 100;
+        while (Math.abs(sigma-sigmaStore) >=10**(-8)) {
+          var sigmaM = 0.5*(2*sigma1 + sigma),
+              deltaSig = B*Math.sin(sigma)*(Math.cos(2*sigmaM)+0.25*B*(Math.cos(sigma)*(-1+2*Math.cos(2*sigmaM)**2))-(B/6)*Math.cos(2*sigmaM)*(-3+4*Math.cos(2*sigmaM)**2)),
+              sigma = (s/(b*A)+deltaSig);
+          // if (counter != 1){
+          //   if (Math.abs(sigma-sigmaStore) <= 10**(-8)){
+          //     break;
+          //   }
+          // }
+          var sigmaStore = sigma;
+        }
+        var tester = 69;
+        var phi2 = Math.atan((Math.sin(u1)*Math.cos(sigma)+Math.cos(u1)*Math.sin(sigma)*Math.cos(alpha1))/((1-f)*Math.sqrt((sinA**2)+(Math.sin(u1)*Math.sin(sigma)-Math.cos(u1)*Math.cos(sigma)*Math.cos(alpha1))**2)))*180/Math.PI;
+            lamda = Math.atan((Math.sin(sigma)*Math.sin(alpha1))/(Math.cos(u1)*Math.cos(sigma)-Math.sin(u1)*Math.sin(sigma)*Math.cos(alpha1))),
+            lat2 = phi2,
+            C = (f/16)*cosASQ*(4+f*(4-3*cosASQ)),
+            L = (lamda - (1-C)*f*sinA*(sigma + C*Math.sin(sigma)*(Math.cos(2*sigmaM)+C*Math.cos(sigma)*(-1+2*Math.cos(2*sigmaM)**2))))*(180/Math.PI),
+            L2 = L + newLong,
+            alpha2 = Math.atan2(sinA,(-Math.sin(u1)*Math.sin(sigma)+Math.cos(u1)*Math.cos(sigma)*(Math.cos(alpha1)))),
+            newLat = phi2,
+            newLong = L2;
+            if (bigCount != 1) {
+              // Add the new latitude and longitude to the end of the final ARRAY
+              // containing the waypoints.
+              points.push(newLat);
+              points.push(newLong);
+            else {
+                var points = [newLat,newLong];
+              }
+            }
+        // var data = [{
+        //       type: 'scattergeo',
+        //       lat: [ 33.636667, -33.392778],
+        //       lon: [ -84.428056, -70.85556 ],
+        //       mode: 'lines',
+        //       line:{
+        //           width: 2,
+        //           color: 'blue'
+        //       }
+        //     }];
+            // INSERT LONGITUDES INTO ARRAY HERE
+            // INSERT LATITUDES INTO ARRAY HERE
+        var alpha1 = alpha2,
+            u1 = Math.atan((1-f)*Math.tan(newLat*Math.PI/180)),
+            bigCount = bigCount+1;
+      }
+    return lats[0];
+
+  }
+
 </script>
 
 </head>
@@ -109,7 +174,14 @@ while (counter < 10**6){
 <div class="center" id="demo">
 <button onclick="myFunction()">Calculate in kilometers!</button>
 <button onclick="miles()">Calculate in miles!</button></div>
-
-
+ -->
+ <div class="footer">
+   <h5>Any Questions? Contact me using any of the methods below:</h5>
+   <h5>Cell: (248)-224-6495</h5>
+   <h5>Email: maxgeissbuhler1@gmail.com</h5>
+   <a href="https://www.linkedin.com/in/maxgeissbuhler/"><i class='fab fa-linkedin' style='font-size:36px'></i></a>
+   <a href="mailto:maxgeissbuhler1@gmail.com"><i class='fas fa-mail-bulk' style='font-size:36px; color:red;padding-left:5px'></i></a>
+   <a href="https://www.facebook.com/max.geissbuhler"><i class='fab fa-facebook-square' style='font-size:36px;padding-left:5px'></i></a>
+ </div>
 </body>
 </html>

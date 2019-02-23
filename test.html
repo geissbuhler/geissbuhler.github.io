@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Plotly.js -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+<!-- Plotly chart will be drawn inside this DIV -->
+<div id="myDiv"></div>
+<script>
+var data = [{
+    type: 'scattergeo',
+    lat: [ 33.636667, -33.392778],
+    lon: [ -84.428056, -70.85556 ],
+    mode: 'lines',
+    line:{
+        width: 2,
+        color: 'blue'
+    }
+  }];
+
+var layout = {
+  title: 'My flights',
+  showlegend: false,
+  geo: {
+      resolution: 50,
+      showland: true,
+      showlakes: true,
+      landcolor: 'rgb(204, 204, 204)',
+      countrycolor: 'rgb(204, 204, 204)',
+      lakecolor: 'rgb(255, 255, 255)',
+      projection: {
+        type: 'equirectangular'
+      },
+      coastlinewidth: 2,
+      lataxis: {
+        range: [ 20, 60 ],
+        showgrid: true,
+        tickmode: 'linear',
+        dtick: 10
+      },
+      lonaxis:{
+        range: [-100, 20],
+        showgrid: true,
+        tickmode: 'linear',
+        dtick: 20
+      }
+    }
+};
+
+  Plotly.newPlot('myDiv', data, layout, {showSendToCloud: true});</script>
+</body>
+</html>
