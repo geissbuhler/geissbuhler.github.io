@@ -70,12 +70,3 @@
   }
 
 ?>
-
-<form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
-  <fieldset>
-    <input type="text" id="email" name="email" />
-    <label for="message"><?php echo $form_message_label ?></label>
-    <textarea id="message" name="message" rows="5" cols="30"></textarea>
-    <input type="submit"><?php echo $form_submit_label ?></input>
- </fieldset>
-</form>
