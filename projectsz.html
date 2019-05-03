@@ -41,7 +41,7 @@
     </div>
   </nav>
     <div class="jumbotron">
-      <h1>Routes Travelled This Year</h1>
+      <h1 class="display-3">Routes Travelled This Year</h1>
     </div>
     <div id="map"></div>
     <div style="padding-top:30px"></div>
@@ -82,7 +82,7 @@
       <div><h2> Favorite Aircraft </h2><h3 id="faveAC"></h3></div>
     </div>
     <div class="col-sm-6" style="text-align:center">
-      <div><h2> Favorite Airline </h2><h3 id="a"></h3></div>
+      <div><h2> Favorite Airline </h2><h3 id="faveAirline"></h3></div>
     </div>
     <div class=" row top-buffers"></div>
   </div>
@@ -126,34 +126,81 @@
           mapTypeId: 'terrain'
         });
 
-        var flightPlanCoordinates = [
+        // Flight coordinates for 1 way flights (lower strokeWeight)
+        var oneWayCoordinates = [
           {lat: 33.6407, lng: -84.4277}, // ATL
           {lat: 40.7899, lng: -111.9791}, // SLC
+          {lat: 42.2162, lng: -83.3554}, // DTW
+          {lat: 45.5715, lng: -84.7862}, // PLN
+        ];
+
+        // Round Trip Coordinates
+        var flightPlanCoordinates = [
           {lat: 42.2162, lng: -83.3554}, // DTW
           {lat: 47.4502, lng: -122.3088}, // SEA
           {lat: 42.2162, lng: -83.3554}, // DTW
           {lat: 33.6407, lng: -84.4277}, // ATL
-          {lat: 42.2162, lng: -83.3554}, // DTW
-          {lat: 45.5715, lng: -84.7862}, // PLN
         ];
+
+        // This is the number of flight segments taken
+        var numFlights = 5;
+        var repeatFlightPlanCoordinates = [
+          {lat: 33.6407, lng: -84.4277}, // ATL
+          {lat: 42.2162, lng: -83.3554}, // DTW
+        ];
+
+        var repeatFlightPath = new google.maps.Polyline({
+          path: repeatFlightPlanCoordinates,
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 1*numFlights,
+        });
+
         var flightPath = new google.maps.Polyline({
           path: flightPlanCoordinates,
           geodesic: true,
           strokeColor: '#FF0000',
-          strokeOpacity: 1.0,
-          strokeWeight: 2
+          strokeOpacity: 1,
+          strokeWeight: 2,
+        });
+
+        var oneWayflightPath = new google.maps.Polyline({
+          path: oneWayCoordinates,
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1,
+          strokeWeight: 1,
         });
         var i;
         for (i=0; i<flightPlanCoordinates.length;i++) {
           var marker = new google.maps.Marker({
             position: flightPlanCoordinates[i],
             map: map,
-            title: 'Hello World!'
+            title: 'RT flights'
+          });
+        }
+
+        for (i=0; i<oneWayCoordinates.length;i++) {
+          var marker = new google.maps.Marker({
+            position: oneWayCoordinates[i],
+            map: map,
+            title: '1 way flights'
+          });
+        }
+
+        for (i=0; i<repeatFlightPlanCoordinates.length;i++) {
+          var marker = new google.maps.Marker({
+            position: repeatFlightPlanCoordinates[i],
+            map: map,
+            title: 'Popular routes'
           });
         }
 
 
         flightPath.setMap(map);
+        repeatFlightPath.setMap(map);
+        oneWayflightPath.setMap(map);
       }
 
       // Retrieve info from inputs and make trip object. Then send to trips(). //
@@ -172,124 +219,124 @@
 //              trips(new_trip);
 // }
 
-    // Define Trips, and have the ability to add one from the inputs //
-    function trips(new_trip) {
-      //      Airports    //
-            // ATL //
-      var lat_ATL = 33.6407,
-          long_ATL = -84.4277,
-
-            // DTW //
-          lat_DTW = 42.2162,
-          long_DTW = -83.3554,
-
-            // PLN //
-          lat8 = 45.5715,
-          long8 = -84.7862,
-
-            // SEA //
-          lat_SEA = 47.4502,
-          long_SEA = -122.3088,
-
-            // SLC //
-          lat_SLC = 40.7899,
-          long_SLC = -111.9791,
-
-          airports = ["ATL","DTW","PLN","SEA","SLC"],
-          aircrafts = ["737-900","757-200","A320","A321","CRJ-200","737-800"],
-          airlines = ["Delta Airlines","Alaska Airlines","Spirit Airlines"],
-
-          // LEGS //
-          // ATL-> SLC //
-          time = 4*60 +3,
-          numTrips = 1,
-          dep = "ATL",
-          arr = "SLC",
-          aircraft = "737-900",
-          airline = "Delta Airlines",
-          trip1 = [lat_ATL,long_ATL,lat_SLC,long_SLC,time,dep,arr,airline,aircraft],
-
-          // SLC-> DTW //
-          time = 3*60 +29,
-          numTrips = 1,
-          dep = "SLC",
-          arr = "DTW",
-          aircraft = "737-900",
-          airline = "Delta Airlines",
-          trip2 = [lat_SLC,long_SLC,lat_DTW,long_DTW,time,dep,arr,airline,aircraft],
-
-          // DTW -> SEA //
-          time = 4*60 +55,
-          numTrips = 1,
-          dep = "DTW",
-          arr = "SEA",
-          aircraft = "737-800",
-          airline = "Alaska Airlines",
-          trip3 = [lat_DTW,long_DTW,lat_SEA,long_SEA,time,dep,arr,airline,aircraft],
-
-          // SEA -> DTW //
-          time = 4*60 +55,
-          numTrips = 1,
-          dep = "SEA",
-          arr = "DTW",
-          aircraft = "A321",
-          airline = "Spirit Airlines",
-          trip4 = [lat_DTW,long_DTW,lat_SEA,long_SEA,time,dep,arr,airline,aircraft],
-
-          // DTW -> ATL (JAN 6)//
-          time = 2*60 +13,
-          numTrips = 1,
-          dep = "DTW",
-          arr = "ATL",
-          aircraft = "A320",
-          airline = "Delta Airlines",
-          trip5 = [lat_DTW,long_DTW,lat_ATL,long_ATL,time,dep,arr,airline,aircraft],
-
-          // ATL -> DTW (FEB 21)//
-          time = 1*60 +37,
-          numTrips = 1,
-          dep = "ATL",
-          arr = "DTW",
-          aircraft = "737-900",
-          airline = "Delta Airlines",
-          trip6 = [lat_DTW,long_DTW,lat_ATL,long_ATL,time,dep,arr,airline,aircraft],
-
-          // DTW -> ATL (FEB 24)//
-          time = 2*60 +13,
-          numTrips = 1,
-          dep = "DTW",
-          arr = "ATL",
-          aircraft = "A320",
-          airline = "Delta Airlines",
-          trip7 = [lat_DTW,long_DTW,lat_ATL,long_ATL,time,dep,arr,airline,aircraft],
-
-          // DTW -> ATL (MAR 24)//
-          time = 1*60 +44,
-          numTrips = 1,
-          dep = "DTW",
-          arr = "ATL",
-          aircraft = "757-200",
-          airline = "Delta Airlines",
-          trip8 = [lat_DTW,long_DTW,lat_ATL,long_ATL,time,dep,arr,airline,aircraft],
-
-          // DTW -> PLN //
-          time = 1*60 +31,
-          numTrips = 1,
-          dep = "DTW",
-          arr = "PLN",
-          aircraft = "CRJ-200",
-          airline = "Delta Airlines",
-          trip9 = [lat_DTW,long_DTW,lat_ATL,long_ATL,time,dep,arr,airline,aircraft];
-
-          var trips = [trip1,trip2,trip3,trip4,trip5,trip6,trip7,trip8,trip9];
-
-          // If no "new_trip", add nothing to trips array.
-      if (typeof new_trip === 'undefined') {
-          new_trip = "";
-      }
-          trips.push(new_trip);
-          totalDist(trips);
-    }
+    // // Define Trips, and have the ability to add one from the inputs //
+    // function trips(new_trip) {
+    //   //      Airports    //
+    //         // ATL //
+    //   var lat_ATL = 33.6407,
+    //       long_ATL = -84.4277,
+    //
+    //         // DTW //
+    //       lat_DTW = 42.2162,
+    //       long_DTW = -83.3554,
+    //
+    //         // PLN //
+    //       lat8 = 45.5715,
+    //       long8 = -84.7862,
+    //
+    //         // SEA //
+    //       lat_SEA = 47.4502,
+    //       long_SEA = -122.3088,
+    //
+    //         // SLC //
+    //       lat_SLC = 40.7899,
+    //       long_SLC = -111.9791,
+    //
+    //       airports = ["ATL","DTW","PLN","SEA","SLC"],
+    //       aircrafts = ["737-900","757-200","A320","A321","CRJ-200","737-800"],
+    //       airlines = ["Delta Airlines","Alaska Airlines","Spirit Airlines"],
+    //
+    //       // LEGS //
+    //       // ATL-> SLC //
+    //       time = 4*60 +3,
+    //       numTrips = 1,
+    //       dep = "ATL",
+    //       arr = "SLC",
+    //       aircraft = "737-900",
+    //       airline = "Delta Airlines",
+    //       trip1 = [lat_ATL,long_ATL,lat_SLC,long_SLC,time,dep,arr,airline,aircraft],
+    //
+    //       // SLC-> DTW //
+    //       time = 3*60 +29,
+    //       numTrips = 1,
+    //       dep = "SLC",
+    //       arr = "DTW",
+    //       aircraft = "737-900",
+    //       airline = "Delta Airlines",
+    //       trip2 = [lat_SLC,long_SLC,lat_DTW,long_DTW,time,dep,arr,airline,aircraft],
+    //
+    //       // DTW -> SEA //
+    //       time = 4*60 +39,
+    //       numTrips = 1,
+    //       dep = "DTW",
+    //       arr = "SEA",
+    //       aircraft = "737-800",
+    //       airline = "Alaska Airlines",
+    //       trip3 = [lat_DTW,long_DTW,lat_SEA,long_SEA,time,dep,arr,airline,aircraft],
+    //
+    //       // SEA -> DTW //
+    //       time = 4*60 +21,
+    //       numTrips = 1,
+    //       dep = "SEA",
+    //       arr = "DTW",
+    //       aircraft = "A321",
+    //       airline = "Spirit Airlines",
+    //       trip4 = [lat_DTW,long_DTW,lat_SEA,long_SEA,time,dep,arr,airline,aircraft],
+    //
+    //       // DTW -> ATL (JAN 6)//
+    //       time = 2*60 +13,
+    //       numTrips = 1,
+    //       dep = "DTW",
+    //       arr = "ATL",
+    //       aircraft = "A320",
+    //       airline = "Delta Airlines",
+    //       trip5 = [lat_DTW,long_DTW,lat_ATL,long_ATL,time,dep,arr,airline,aircraft],
+    //
+    //       // ATL -> DTW (FEB 21)//
+    //       time = 1*60 +37,
+    //       numTrips = 1,
+    //       dep = "ATL",
+    //       arr = "DTW",
+    //       aircraft = "737-900",
+    //       airline = "Delta Airlines",
+    //       trip6 = [lat_DTW,long_DTW,lat_ATL,long_ATL,time,dep,arr,airline,aircraft],
+    //
+    //       // DTW -> ATL (FEB 24)//
+    //       time = 2*60 +13,
+    //       numTrips = 1,
+    //       dep = "DTW",
+    //       arr = "ATL",
+    //       aircraft = "A320",
+    //       airline = "Delta Airlines",
+    //       trip7 = [lat_DTW,long_DTW,lat_ATL,long_ATL,time,dep,arr,airline,aircraft],
+    //
+    //       // DTW -> ATL (MAR 24)//
+    //       time = 1*60 +44,
+    //       numTrips = 1,
+    //       dep = "DTW",
+    //       arr = "ATL",
+    //       aircraft = "757-200",
+    //       airline = "Delta Airlines",
+    //       trip8 = [lat_DTW,long_DTW,lat_ATL,long_ATL,time,dep,arr,airline,aircraft],
+    //
+    //       // DTW -> PLN //
+    //       time = 1*60 +31,
+    //       numTrips = 1,
+    //       dep = "DTW",
+    //       arr = "PLN",
+    //       aircraft = "CRJ-200",
+    //       airline = "Delta Airlines",
+    //       trip9 = [lat_DTW,long_DTW,lat_ATL,long_ATL,time,dep,arr,airline,aircraft];
+    //
+    //       var trips = [trip1,trip2,trip3,trip4,trip5,trip6,trip7,trip8,trip9];
+    //
+    //       // If no "new_trip", add nothing to trips array.
+    //   if (typeof new_trip === 'undefined') {
+    //       new_trip = "";
+    //   }
+    //       trips.push(new_trip);
+    //       totalDist(trips);
+    // }
 
 
 
@@ -326,8 +373,8 @@
             long_SLC = -111.9791,
 
             airports = ["ATL","DTW","PLN","SEA","SLC"],
-            aircrafts = ["737-900","757-200","A320","A321","CRJ-200","737-800"],
-            airlines = ["Delta Airlines","Alaska Airlines","Spirit Airlines"],
+            aircrafts = ["737-900","757-200","A320","A321","CRJ-200","737-800","MD-90"],
+            airlines = ["Delta Air Lines","Alaska Airlines","Spirit Airlines"],
 
             // LEGS //
             // ATL-> SLC //
@@ -335,7 +382,7 @@
             dep = "ATL",
             arr = "SLC",
             aircraft = "737-900",
-            airline = "Delta Airlines",
+            airline = "Delta Air Lines",
             trip1 = [lat_ATL,long_ATL,lat_SLC,long_SLC,time,dep,arr,airline,aircraft],
 
             // SLC-> DTW //
@@ -343,11 +390,11 @@
             dep = "SLC",
             arr = "DTW",
             aircraft = "737-900",
-            airline = "Delta Airlines",
+            airline = "Delta Air Lines",
             trip2 = [lat_SLC,long_SLC,lat_DTW,long_DTW,time,dep,arr,airline,aircraft],
 
             // DTW -> SEA //
-            time = 4*60 +55,
+            time = 4*60 +39,
             dep = "DTW",
             arr = "SEA",
             aircraft = "737-800",
@@ -355,7 +402,7 @@
             trip3 = [lat_DTW,long_DTW,lat_SEA,long_SEA,time,dep,arr,airline,aircraft],
 
             // SEA -> DTW //
-            time = 4*60 +55,
+            time = 4*60 +21,
             dep = "SEA",
             arr = "DTW",
             aircraft = "A321",
@@ -367,7 +414,7 @@
             dep = "DTW",
             arr = "ATL",
             aircraft = "A320",
-            airline = "Delta Airlines",
+            airline = "Delta Air Lines",
             trip5 = [lat_DTW,long_DTW,lat_ATL,long_ATL,time,dep,arr,airline,aircraft],
 
             // ATL -> DTW (FEB 21)//
@@ -375,7 +422,7 @@
             dep = "ATL",
             arr = "DTW",
             aircraft = "737-900",
-            airline = "Delta Airlines",
+            airline = "Delta Air Lines",
             trip6 = [lat_DTW,long_DTW,lat_ATL,long_ATL,time,dep,arr,airline,aircraft],
 
             // DTW -> ATL (FEB 24)//
@@ -383,7 +430,7 @@
             dep = "DTW",
             arr = "ATL",
             aircraft = "A320",
-            airline = "Delta Airlines",
+            airline = "Delta Air Lines",
             trip7 = [lat_DTW,long_DTW,lat_ATL,long_ATL,time,dep,arr,airline,aircraft],
 
             // DTW -> ATL (MAR 24)//
@@ -391,7 +438,7 @@
             dep = "DTW",
             arr = "ATL",
             aircraft = "757-200",
-            airline = "Delta Airlines",
+            airline = "Delta Air Lines",
             trip8 = [lat_DTW,long_DTW,lat_ATL,long_ATL,time,dep,arr,airline,aircraft],
 
             // DTW -> PLN //
@@ -399,10 +446,18 @@
             dep = "DTW",
             arr = "PLN",
             aircraft = "CRJ-200",
-            airline = "Delta Airlines",
-            trip9 = [lat_DTW,long_DTW,lat_ATL,long_ATL,time,dep,arr,airline,aircraft];
+            airline = "Delta Air Lines",
+            trip9 = [lat_DTW,long_DTW,lat_ATL,long_ATL,time,dep,arr,airline,aircraft],
 
-        var trips = [trip1,trip2,trip3,trip4,trip5,trip6,trip7,trip8,trip9];
+            // ATL -> DTW (APRIL 27)//
+            time = 1*60 +50,
+            dep = "ATL",
+            arr = "DTW",
+            aircraft = "MD-90",
+            airline = "Delta Air Lines",
+            trip10 = [lat_ATL,long_ATL,lat_DTW,long_DTW,time,dep,arr,airline,aircraft];
+
+        var trips = [trip1,trip2,trip3,trip4,trip5,trip6,trip7,trip8,trip9,trip10];
 
 
 
@@ -494,7 +549,7 @@
         }
 
 
-      document.getElementById("routeDist").innerHTML = dist.toFixed(0) + " km.";
+      document.getElementById("routeDist").innerHTML = dist.toFixed(0) + " km, or "+ (dist*0.621371).toFixed(0)+ " mi." ;
       document.getElementById("moonDist").innerHTML = (dist/24901).toFixed(4);
       document.getElementById("demo2").innerHTML = totalTime;
       document.getElementById("longest").innerHTML = longDep + " -> " + longArr + " , "  + longestTime;
