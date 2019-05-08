@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="mystyle.css">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta charset="utf-8">
-<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+  <title>Projects</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="mystyle.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <style>
       /* Always set the map height explicitly to define the size of the div
@@ -24,65 +24,65 @@
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-    <a class="navbar-brand" href="index.html">
-      <img border="0 "src="geossmall.png" height="60px"/>
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="research.html">Research</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-        <li class="nav-item active"><a class="nav-link" href="projectsz.html">Projects</a></li>
-      </ul>
-    </div>
-  </nav>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+      <a class="navbar-brand" href="#" style="display:block; margin:0 auto;">
+          <img src="geossmall.svg" alt="" class="d-inline-block align-top" width="50" height="50">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav" style="padding-right:10px">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="research.html">Research</a></li>
+          <li class="nav-item active"><a class="nav-link" href="projectsz.html">Projects</a></li>
+        </ul>
+      </div>
+    </nav>
     <div class="jumbotron">
       <h1 class="display-3">Routes Travelled This Year</h1>
     </div>
     <div id="map"></div>
     <div style="padding-top:30px"></div>
-    <div class="dark-header"><h1> Flight Statistics </h1>
+    <div class="dark-header"><h1 class="display-4"> Flight Statistics </h1>
       <div id="demo"><button onclick="totalDist()">Calculate</button></div>
     </div>
     <div class="container-fluid">
-      <div class="row light">
-        <div class="col-sm-6" style="text-align:center">
-          <div><h2>Total distance flown this year: <h3 id="routeDist"></h3> </h2></div>
+      <div class="row">
+        <div class="col-sm-6" id="flight_item2">
+          <div><h2>Total distance flown this year</h2> <h4 id="routeDist" /> </div>
 
         </div>
-        <div class="col-sm-6" style="text-align:center">
-          <div><h2>Total time spent in air: <h3 id="demo2"></h3></h2></div>
+        <div class="col-sm-6" id="flight_item1">
+          <div><h2>Total time spent in air <h4 id="demo2"/></h2></div>
 
         </div>
       </div>
 
-  <div class="row dark">
-    <div class="col-sm-6" style="text-align:center">
-      <div><h2> Times around the Earth </h2><h3 id="moonDist"></h3></div>
+  <div class="row">
+    <div class="col-sm-6" id="flight_item1">
+      <div><h2> Times around the Earth </h2><h4 id="moonDist"/></div>
 
     </div>
-    <div class="col-sm-6" style="text-align:center">
-      <div><h2>Favorite Airport <h3 id="faveAPT"></h3></h2></div>
+    <div class="col-sm-6" id="flight_item2">
+      <div><h2>Favorite Airport <h4 id="faveAPT"/></h2></div>
     </div>
   </div>
-  <div class="row light">
-    <div class="col-sm-6" style="text-align:center">
-      <div><h2> Longest Flight </h2><h3 id="longest"></h3></div>
+  <div class="row">
+    <div class="col-sm-6" id="flight_item2">
+      <div><h2> Longest Flight </h2><h4 id="longest"/></div>
     </div>
-    <div class="col-sm-6" style="text-align:center">
-      <div><h2> Shortest Flight <h3 id="shortest"></h3></h2></div>
+    <div class="col-sm-6" id="flight_item1">
+      <div><h2> Shortest Flight <h4 id="shortest"/></h2></div>
     </div>
   </div>
-  <div class="row dark">
-    <div class="col-sm-6" style="text-align:center">
-      <div><h2> Favorite Aircraft </h2><h3 id="faveAC"></h3></div>
+  <div class="row">
+    <div class="col-sm-6" id="flight_item1">
+      <div><h2> Favorite Aircraft </h2><h4 id="faveAC"/></div>
     </div>
-    <div class="col-sm-6" style="text-align:center">
-      <div><h2> Favorite Airline </h2><h3 id="faveAirline"></h3></div>
+    <div class="col-sm-6" id="flight_item2">
+      <div><h2> Favorite Airline </h2><h4 id="faveAirline"/></div>
     </div>
     <div class=" row top-buffers"></div>
   </div>
@@ -201,7 +201,16 @@
         flightPath.setMap(map);
         repeatFlightPath.setMap(map);
         oneWayflightPath.setMap(map);
+        var phone = window.matchMedia( "(max-width: 768px)" );
+            tablet = window.matchMedia( "(max-width:1024px)" );
+
+        if (phone.matches) {
+            map.setZoom(3.5);
+      } else if (tablet.matches) {
+            map.setZoom(4);
+
       }
+    }
 
       // Retrieve info from inputs and make trip object. Then send to trips(). //
 //       function addFlight() {
