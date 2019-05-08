@@ -56,10 +56,10 @@ input[type=submit]:hover {
 
 @media only screen and (max-device-width: 1366px) {
   .parallax {
-    background-image: url('me.png');
-    height: 900px;
+    background-image: url('me_wide4.png');
+    height: 450px;
     background-attachment: scroll;
-    background-position: middle;
+    background-position: center;
     position:relative;
   }
 }
@@ -78,6 +78,11 @@ position:relative;
 display: none;
 }
 
+#company_text:hover #company_image {
+  opacity: 0.15;
+  filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+
 #company:hover #company_text {
 display: block;
 position: absolute;
@@ -93,7 +98,7 @@ position: absolute;
 }
 
 /* .container {
-    min-height:100%; 
+    min-height:100%;
    position:relative;
    width: 2%;
 } */
@@ -122,6 +127,13 @@ position: absolute;
   position: absolute;
   height: 150px;
   padding: 1% 0%;
+}
+
+@media only screen and (max-device-width:1200px) {
+.footer {
+  height: 175px;
+  padding: 1% 0%;
+}
 }
 
 .fa {
