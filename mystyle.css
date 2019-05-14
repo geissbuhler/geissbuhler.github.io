@@ -4,6 +4,7 @@ html {
 
 body {
   padding-bottom:125px;
+  /* padding-top: 50px; */
   min-height: 80%;
   height: auto;
 }
@@ -215,7 +216,7 @@ h1 {
   text-align: center;
   color:#B3A369;
   height: 125px;
-  padding: 5% 0;
+  padding: 8% 0;
 }
 
 #itemHS2 {
