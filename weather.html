@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="css.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<title>Briefing</title>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div style="padding-top:50px"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <h1><b>Good <span id="time_of_day">Morning</span>, Max</b></h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div style="padding-top:25px"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-7">
+        <h2><b>Temperature</b></h2>
+        <h4>It is currently <span id="current_temp"></span><span>&#176;</span>F in <span id="loc"></span>.</h4>
+        <h2><b>Conditions</b></h2>
+        <h4><span id="conditions"></span></h4>
+      </div>
+      <div class="col-sm-5">
+        <h2><b id="day_of_week"></b></h2>
+        <h3 id="today">June 3 2019</h3>
+        <div id="weather">
+          <div id="description"></div>
+          <h1 id="temp"></h1>
+          <div id="location"></div>
+        </div>
+        <h4>High: <span id="high_temp"></span><span>&#176;</span>F</h4>
+        <h4>Low: <span id="low_temp"></span><span>&#176;</span>F</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div style="padding-top:25px"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <h4>Forecast for next 18 hours:</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <h3><span id="weather1"></span><span>&#176;</span>F</h3>
+        <h4>Precip: <span id="precip1"></span></h4>
+        <h5><b><span id="hour1"></span></b></h5>
+      </div>
+      <div class="col-sm-2">
+        <h3><span id="weather2"></span><span>&#176;</span>F</h3>
+        <h4>Precip: <span id="precip2"></span></h4>
+        <h5><b><span id="hour2"></span></b></h5>
+      </div>
+      <div class="col-sm-2">
+        <h3><span id="weather3"></span><span>&#176;</span>F</h3>
+        <h4>Precip: <span id="precip3"></span></h4>
+        <h5><b><span id="hour3"></span></b></h5>
+      </div>
+      <div class="col-sm-2">
+        <h3><span id="weather4"></span><span>&#176;</span>F</h3>
+        <h4>Precip: <span id="precip4"></span></h4>
+        <h5><b><span id="hour4"></span></b></h5>
+      </div>
+      <div class="col-sm-2">
+        <h3><span id="weather5"></span><span>&#176;</span>F</h3>
+        <h4>Precip: <span id="precip5"></span></h4>
+        <h5><b><span id="hour5"></span></b></h5>
+      </div>
+      <div class="col-sm-2">
+        <h3><span id="weather6"></span><span>&#176;</span>F</h3>
+        <h4>Precip: <span id="precip6"></span></h4>
+        <h5><b><span id="hour6"></span></b></h5>
+      </div>
+    </div>
+    <!-- <div class="row">
+      <div class="col-sm-12">
+        <h4>Radar:</h4>
+        <div id="map"></div>
+      </div>
+    </div> -->
+</div>
+
+<script lang="text/javascript">
+
+// PDX: lat: 45.539, lng: -122.565
+  function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 5,
+        center: {lat: 45.539, lng: -122.565},
+        mapTypeId: 'terrain'
+      });
+  }
+
+  function getRadar() {
+    var api_key = 'cac01f9bcd20501596ac236473f0b4a9';
+    fetch('https://tile.openweathermap.org/map/{layer}/{z}/{x}/{y}.png?appid={api_key}')
+  }
+
+  function weatherBalloon( cityID ) {
+      var key = 'cac01f9bcd20501596ac236473f0b4a9';
+      fetch('https://api.openweathermap.org/data/2.5/weather?id=' + cityID+ '&appid=' + key)
+      .then(function(resp) { return resp.json() }) // Convert data to json
+      .then(function(data) {
+        drawWeather(data);
+      })
+      .catch(function() {
+        // catch any errors
+      });
+
+  }
+
+  function weatherForecast( cityID ) {
+      var key = 'cac01f9bcd20501596ac236473f0b4a9';
+      fetch('https://api.openweathermap.org/data/2.5/forecast?id=' + cityID+ '&appid=' + key)
+      .then(function(resp) { return resp.json() }) // Convert data to json
+      .then(function(data) {
+        forecast(data);
+      })
+      .catch(function() {
+        // catch any errors
+      });
+
+  }
+
+  window.onload = function() {
+    weatherBalloon( 5746545 );
+    weatherForecast( 5746545 );
+  }
+
+  function drawWeather( d ) {
+    var fahrenheit = Math.round(((parseFloat(d.main.temp)-273.15)*1.8)+32);
+    var low = Math.round(((parseFloat(d.main.temp_min)-273.15)*1.8)+32);
+    var high = Math.round(((parseFloat(d.main.temp_max)-273.15)*1.8)+32);
+    var description = titleCase(d.weather[0].description);
+    document.getElementById('conditions').innerHTML = description;
+    document.getElementById('current_temp').innerHTML = fahrenheit;
+    document.getElementById('loc').innerHTML = d.name;
+    document.getElementById('high_temp').innerHTML = high;
+    document.getElementById('low_temp').innerHTML = low;
+  }
+
+  function titleCase(str) {
+     var splitStr = str.toLowerCase().split(' ');
+     for (var i = 0; i < splitStr.length; i++) {
+         splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+     }
+     return splitStr.join(' ');
+  }
+
+  function forecast( stuff ) {
+    var count = 0;
+    while (count < 6){
+      var timeStamp = stuff.list,
+          timeStamp = timeStamp[count].dt,
+          timeStamp = new Date(timeStamp*1000),
+          hh = timeStamp.getHours() + ':00',
+          temperature = Math.round(((parseFloat(stuff.list[count].main.temp)-273.15)*1.8)+32).toString(),
+          precipitation = stuff.list[count].weather[0].description;
+      if( precipitation == 'overcast clouds'){
+        var precipitation = 'Overcast';
+      }else{
+        var precipitation = titleCase(precipitation);
+      }
+      document.getElementById('weather' + (count+1).toString()).innerHTML = temperature;
+      document.getElementById('hour' + (count+1).toString()).innerHTML = hh;
+      document.getElementById('precip' + (count+1).toString()).innerHTML = precipitation;
+
+      console.log(hh)
+      var count = count+1;
+    }
+
+    document.getElementById('tester').innerHTML = hh;
+
+    console.log(hh)
+    // while (count < 96){
+    //
+    //   count = count+1;
+    // }
+  }
+
+  // function forecast ( data ) {
+  //
+  //
+  // }
+  var today = new Date();
+  var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var mm = months[today.getMonth()];
+  var days = ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  var dd = today.getDate();
+  var yyyy = today.getFullYear();
+  if(today.getHours() < 12) {
+    var tod = "Morning";
+  }else if (today.getHours() >= 12 && today.getHours() < 17) {
+    var tod = "Afternoon";
+  } else {
+    var tod = "Evening"
+  }
+  document.getElementById('time_of_day').innerHTML = tod;
+
+  // var today = mmmm + dd + yyyy;
+  document.getElementById('today').innerHTML = mm + ' ' +  dd + ', ' +  yyyy;
+  document.getElementById('day_of_week').innerHTML = days[today.getDay()];
+
+
+
+
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAas38IBvDfRj5_8u9baiiaKZT55H3lVfM&callback=initMap">
+</script>
+</body>
+</html>
