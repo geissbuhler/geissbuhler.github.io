@@ -41,7 +41,7 @@ input[type=submit]:hover {
 
 /* First image (Logo. Full height) */
 .parallax {
-  background-image: url('me_wide4.png');
+  background-image: url('boeing_pic.jpg');
   height: 900px;
   background-attachment: fixed;
   background-position: center;
@@ -77,24 +77,25 @@ input[type=submit]:hover {
 }
 
 .company {
-  position: relative;
   text-align: center;
 }
-.company:hover {
-  opacity: 0.15;
-  filter: alpha(opacity=100); /* For IE8 and earlier */
-}
+
 #company_text {
 position:relative;
 display: none;
 }
 
-#company_text:hover #company_image {
-  opacity: 0.15;
-  filter: alpha(opacity=100); /* For IE8 and earlier */
+#company_back_text {
+position:relative;
+display: none;
 }
 
-#company:hover #company_text {
+/* Set the back-side div to invisible so that only 1 is showing at a time */
+.back {
+  display:none;
+}
+
+.front:hover #company_text {
 display: block;
 position: absolute;
   top: 50%;
@@ -103,16 +104,47 @@ position: absolute;
   text-align: center;
 }
 
-#company_image:hover {
+.front:hover #company_image {
   opacity: 0.15;
   filter: alpha(opacity=100); /* For IE8 and earlier */
 }
 
-/* .container {
-    min-height:100%;
-   position:relative;
-   width: 2%;
-} */
+/* Flip the item 180 deg about Y-Axis */
+.flipped {
+    -webkit-transform: rotateY( 180deg );
+    -moz-transform: rotateY( 180deg );
+    -o-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
+    transition: transform 1s;
+}
+
+/* Hide the front side of the item */
+.flipped .front {
+  display: none;
+}
+/* Show the back side of the item */
+.flipped .back {
+  display: block;
+  transform: rotateY( 180deg );
+}
+/* When hovering over back side, show the text */
+.flipped #company_back_text {
+
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+
+  /* Make the background image opaque to show the text and flipped*/
+}
+.flipped #company_image_back {
+  opacity: 0.15;
+  transform: rotateY( 180deg );
+}
+
 
 .pageContentWrapper{
   margin-bottom:125px;/* Height of footer*/
@@ -130,7 +162,6 @@ position: absolute;
   transition: 0.4s;
 }
 
-
 .footer {
   width: 100%;
   background-color: #eee;
@@ -139,13 +170,6 @@ position: absolute;
   height: 180px;
   padding: 1% 0%;
 }
-
-/* @media only screen and (max-device-width:1200px) {
-.footer {
-  height: 175px;
-  padding: 1% 0%;
-}
-} */
 
 .fa {
   padding: 20px;
@@ -272,6 +296,7 @@ h1 {
   height: auto;
   padding: 1% 0;
 }
+
 
 .accordion_item {
   border-style: solid;

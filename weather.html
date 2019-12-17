@@ -89,6 +89,12 @@
         <h5><b><span id="hour6"></span></b></h5>
       </div>
     </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <input type="number" id="new_zip" value="97220">
+        <button onclick="change_zip()">Change Weather Zip</button>
+      </div>
+    </div>
     <!-- <div class="row">
       <div class="col-sm-12">
         <h4>Radar:</h4>
@@ -115,7 +121,7 @@
 
   function weatherBalloon( cityID ) {
       var key = 'cac01f9bcd20501596ac236473f0b4a9';
-      fetch('https://api.openweathermap.org/data/2.5/weather?id=' + cityID+ '&appid=' + key)
+      fetch('https://api.openweathermap.org/data/2.5/weather?zip=' + cityID+ ',us' + '&appid=' + key)
       .then(function(resp) { return resp.json() }) // Convert data to json
       .then(function(data) {
         drawWeather(data);
@@ -126,9 +132,15 @@
 
   }
 
+  function change_zip() {
+    var new_zip = getElementById("new_zip");
+    weatherBalloon( new_zip );
+    weatherForecast( new_zip );
+  }
+
   function weatherForecast( cityID ) {
       var key = 'cac01f9bcd20501596ac236473f0b4a9';
-      fetch('https://api.openweathermap.org/data/2.5/forecast?id=' + cityID+ '&appid=' + key)
+      fetch('https://api.openweathermap.org/data/2.5/forecast?zip=' + cityID+ ',us' + '&appid=' + key)
       .then(function(resp) { return resp.json() }) // Convert data to json
       .then(function(data) {
         forecast(data);
@@ -140,8 +152,8 @@
   }
 
   window.onload = function() {
-    weatherBalloon( 5746545 );
-    weatherForecast( 5746545 );
+    weatherBalloon( 97220 );
+    weatherForecast( 97220 );
   }
 
   function drawWeather( d ) {

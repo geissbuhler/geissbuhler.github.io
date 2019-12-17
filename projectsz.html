@@ -36,55 +36,61 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="research.html">Research</a></li>
-          <li class="nav-item active"><a class="nav-link" href="projectsz.html">Projects</a></li>
+          <li class="nav-item active"><a class="nav-link" href="projectsz.html">Hobbies</a></li>
         </ul>
       </div>
     </nav>
     <div class="jumbotron">
-      <h1 class="display-3">Routes Travelled This Year</h1>
-    </div>
-    <div id="map"></div>
-    <div style="padding-top:30px"></div>
-    <div class="dark-header"><h1 class="display-4"> Flight Statistics </h1>
-      <div id="demo"><button onclick="totalDist()">Calculate</button></div>
+      <h1 class="display-3">Photography</h1>
     </div>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-6" id="flight_item2">
-          <div><h2>Total distance flown this year</h2> <h4 id="routeDist" /> </div>
+        <div class="col-sm-12">
+          <div id="carousel" class="carousel slide" data-ride="carousel">
+            <ul class="carousel-indicators">
+              <li data-target="#carousel" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel" data-slide-to="1"></li>
+              <li data-target="#carousel" data-slide-to="2"></li>
+            </ul>
+
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="George.jpeg" alt="Portage Glacier" width="100%">
+              </div>
+              <div class="carousel-item">
+                <img src="maizey2.jpeg" alt="Maizey2" width="100%">
+              </div>
+              <div class="carousel-item">
+                <img src="ANC_Moose.jpeg" alt="Portage Glacier" width="100%">
+              </div>
+              <div class="carousel-item">
+                <img src="mt_st_helens.jpeg" alt="Portage Glacier" width="100%">
+              </div>
+              <div class="carousel-item">
+                <img src="fairbanks_birds.jpeg" alt="Portage Glacier" width="100%">
+              </div>
+              <div class="carousel-item">
+                <img src="maizey1.jpeg" alt="Maizey1" width="100%">
+              </div>
+              <div class="carousel-item">
+                <img src="glacier.jpeg" alt="Portage Glacier" width="100%">
+              </div>
+            </div>
+
+            <!-- Left and Right Controls -->
+            <a class="carousel-control-prev" href="#carousel" data-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#carousel" data-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </a>
+          </div>
 
         </div>
-        <div class="col-sm-6" id="flight_item1">
-          <div><h2>Total time spent in air <h4 id="demo2"/></h2></div>
 
-        </div>
       </div>
 
-  <div class="row">
-    <div class="col-sm-6" id="flight_item1">
-      <div><h2> Times around the Earth </h2><h4 id="moonDist"/></div>
-
-    </div>
-    <div class="col-sm-6" id="flight_item2">
-      <div><h2>Favorite Airport <h4 id="faveAPT"/></h2></div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6" id="flight_item2">
-      <div><h2> Longest Flight </h2><h4 id="longest"/></div>
-    </div>
-    <div class="col-sm-6" id="flight_item1">
-      <div><h2> Shortest Flight <h4 id="shortest"/></h2></div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6" id="flight_item1">
-      <div><h2> Favorite Aircraft </h2><h4 id="faveAC"/></div>
-    </div>
-    <div class="col-sm-6" id="flight_item2">
-      <div><h2> Favorite Airline </h2><h4 id="faveAirline"/></div>
-    </div>
-    <div class=" row top-buffers"></div>
   </div>
 <!-- <div class="row light">
   <div style="text-align:center"><h2> Quick Add Flight </h2></div>
@@ -111,7 +117,6 @@
   </div> -->
 
 
-</div>
     <script>
 
 
@@ -121,8 +126,8 @@
 
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 5,
-          center: {lat: 41.973, lng: -97.142},
+          zoom: 4,
+          center: {lat: 52, lng: -110},
           mapTypeId: 'terrain'
         });
 
@@ -131,13 +136,38 @@
           {lat: 33.6407, lng: -84.4277}, // ATL
           {lat: 40.7899, lng: -111.9791}, // SLC
           {lat: 42.2162, lng: -83.3554}, // DTW
-          {lat: 45.5715, lng: -84.7862}, // PLN
+          {lat: 45.5898, lng: -122.5951}, // PDX
+          {lat: 61.1759, lng: -149.9901}, // ANC
+          {lat: 64.8164, lng: -147.8635}, // FAI
+          {lat: 47.4502, lng: -122.3088}, // SEA
+          {lat: 45.5898, lng: -122.5951}, // PDX
+          {lat: 40.7899, lng: -111.9791}, // SLC
+          {lat: 45.5898, lng: -122.5951}, // PDX
+          {lat: 37.6213, lng: -122.3790}, // SFO
+          {lat: 45.5898, lng: -122.5951}, // PDX
+          {lat: 37.7126, lng: -122.2197}, // OAK
+          {lat: 45.5898, lng: -122.5951}, // PDX
+          {lat: 33.6407, lng: -84.4277}, // ATL
         ];
 
         // Round Trip Coordinates
         var flightPlanCoordinates = [
+          {lat: 40.7899, lng: -111.9791}, // SLC
+          {lat: 42.2162, lng: -83.3554}, // DTW
+          {lat: 45.5715, lng: -84.7862}, // PLN
           {lat: 42.2162, lng: -83.3554}, // DTW
           {lat: 47.4502, lng: -122.3088}, // SEA
+          {lat: 45.5898, lng: -122.5951}, // PDX
+          {lat: 44.2532, lng: -121.1609}, // RDM
+          {lat: 45.5898, lng: -122.5951}, // PDX
+          {lat: 43.5658, lng: -116.2223}, // BOI
+          {lat: 45.5898, lng: -122.5951}, // PDX
+          {lat: 32.7338, lng: -117.1933}, // SAN
+          {lat: 45.5898, lng: -122.5951}, // PDX
+          {lat: 33.9416, lng: -118.4085}, // LAX
+          {lat: 45.5898, lng: -122.5951}, // PDX
+          {lat: 61.1759, lng: -149.9901}, // ANC
+          {lat: 45.5898, lng: -122.5951}, // PDX
           {lat: 42.2162, lng: -83.3554}, // DTW
           {lat: 33.6407, lng: -84.4277}, // ATL
         ];
@@ -365,6 +395,10 @@
         var lat_ATL = 33.6407,
             long_ATL = -84.4277,
 
+            // ANC //
+            lat_ANC = 61.1759,
+            long_ANC = -149.9901,
+
               // DTW //
             lat_DTW = 42.2162,
             long_DTW = -83.3554,
@@ -381,8 +415,16 @@
             lat_SLC = 40.7899,
             long_SLC = -111.9791,
 
-            airports = ["ATL","DTW","PLN","SEA","SLC"],
-            aircrafts = ["737-900","757-200","A320","A321","CRJ-200","737-800","MD-90"],
+            // PDX //
+            lat_PDX = 45.5898,
+            long_PDX = -122.5951,
+
+            // BOI //
+            lat_BOI = 43.5658,
+            long_BOI = -116.2223,
+
+            airports = ["ATL","DTW","PLN","SEA","SLC", "PDX", "ANC"],
+            aircrafts = ["737-900","757-200","A320","A321","CRJ-200","737-800","MD-90","Q400"],
             airlines = ["Delta Air Lines","Alaska Airlines","Spirit Airlines"],
 
             // LEGS //
@@ -411,12 +453,20 @@
             trip3 = [lat_DTW,long_DTW,lat_SEA,long_SEA,time,dep,arr,airline,aircraft],
 
             // SEA -> DTW //
+            time = 4*60 +11,
+            dep = "SEA",
+            arr = "DTW",
+            aircraft = "737-900",
+            airline = "Delta Air Lines",
+            trip4 = [lat_DTW,long_DTW,lat_PDX,long_PDX,time,dep,arr,airline,aircraft],
+
+            // DTW -> PDX
             time = 4*60 +21,
             dep = "SEA",
             arr = "DTW",
             aircraft = "A321",
             airline = "Spirit Airlines",
-            trip4 = [lat_DTW,long_DTW,lat_SEA,long_SEA,time,dep,arr,airline,aircraft],
+            trip11 = [lat_DTW,long_DTW,lat_SEA,long_SEA,time,dep,arr,airline,aircraft],
 
             // DTW -> ATL (JAN 6)//
             time = 2*60 +13,
@@ -464,9 +514,97 @@
             arr = "DTW",
             aircraft = "MD-90",
             airline = "Delta Air Lines",
-            trip10 = [lat_ATL,long_ATL,lat_DTW,long_DTW,time,dep,arr,airline,aircraft];
+            trip10 = [lat_ATL,long_ATL,lat_DTW,long_DTW,time,dep,arr,airline,aircraft],
 
-        var trips = [trip1,trip2,trip3,trip4,trip5,trip6,trip7,trip8,trip9,trip10];
+            // PDX -> SEA //
+            time = 55,
+            dep = "PDX",
+            arr = "SEA",
+            aircraft = "Q400",
+            airline = "Alaska Airlines",
+            trip12 = [lat_PDX,long_PDX,lat_SEA,long_SEA,time,dep,arr,airline,aircraft],
+
+            // SEA -> PDX //
+            time = 55,
+            dep = "SEA",
+            arr = "PDX",
+            aircraft = "Q400",
+            airline = "Alaska Airlines",
+            trip13 = [lat_SEA,long_SEA,lat_PDX,long_PDX,time,dep,arr,airline,aircraft],
+
+            // PDX -> ANC //
+            time = 3*60 + 40,
+            dep = "PDX",
+            arr = "ANC",
+            aircraft = "737-900",
+            airline = "Alaska Airlines",
+            trip14 = [lat_PDX,long_PDX,lat_ANC,long_ANC,time,dep,arr,airline,aircraft];
+
+            //ANC -> SEA //
+            time = 3*60 + 40,
+            dep = "ANC",
+            arr = "SEA",
+            aircraft = "737-900",
+            airline = "Alaska Airlines",
+            trip15 = [lat_ANC,long_ANC,lat_SEA,long_SEA,time,dep,arr,airline,aircraft];
+
+            // SEA -> PDX //
+            time = 55,
+            dep = "SEA",
+            arr = "PDX",
+            aircraft = "E175",
+            airline = "Alaska Airlines",
+            trip16 = [lat_SEA,long_SEA,lat_PDX,long_PDX,time,dep,arr,airline,aircraft];
+
+            // PDX -> BOI //
+            time = 1*60 + 5,
+            dep = "PDX",
+            arr = "BOI",
+            aircraft = "Q400",
+            airline = "Alaska Airlines",
+            trip17 = [lat_PDX,long_PDX,lat_BOI,long_BOI,time,dep,arr,airline,aircraft];
+
+            // BOI -> PDX //
+            time = 1*60 + 5,
+            dep = "BOI",
+            arr = "PDX",
+            aircraft = "Q400",
+            airline = "Alaska Airlines",
+            trip18 = [lat_BOI,long_BOI,lat_PDX,long_PDX,time,dep,arr,airline,aircraft];
+
+            // PDX -> SEA //
+            time = 1*60 + 20,
+            dep = "PDX",
+            arr = "SEA",
+            aircraft = "A319",
+            airline = "Alaska Airlines",
+            trip19 = [lat_PDX,long_PDX,lat_SEA,long_SEA,time,dep,arr,airline,aircraft];
+
+            // SEA -> PDX //
+            time = 1*60 + 20,
+            dep = "SEA",
+            arr = "PDX",
+            aircraft = "A319",
+            airline = "Alaska Airlines",
+            trip19 = [lat_PDX,long_PDX,lat_SEA,long_SEA,time,dep,arr,airline,aircraft];
+
+            // PDX -> SAN //
+            time = 2*60 + 27,
+            dep = "PDX",
+            arr = "SEA",
+            aircraft = "737-900",
+            airline = "Alaska Airlines",
+            trip20 = [lat_PDX,long_PDX,lat_SEA,long_SEA,time,dep,arr,airline,aircraft];
+
+            // SAN -> PDX //
+            time = 2*60 + 22,
+            dep = "PDX",
+            arr = "SEA",
+            aircraft = "737-900",
+            airline = "Alaska Airlines",
+            trip20 = [lat_PDX,long_PDX,lat_SEA,long_SEA,time,dep,arr,airline,aircraft];
+
+        var trips = [trip1,trip2,trip3,trip4,trip5,trip6,trip7,trip8,trip9,trip10,trip11,trip13,trip14];
 
 
 

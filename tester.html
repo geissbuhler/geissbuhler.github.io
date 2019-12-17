@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Max Geissbuhler's Homepage</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" type="text/css" href="mystyle.css">
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+  <!-- <div class="container"> -->
+  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <a class="navbar-brand" href="index.html" style="display:block; margin:0 auto;">
+        <img src="geossmall.svg" alt="" class="d-inline-block align-top" width="50" height="50">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav" style="padding-right:10px">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="research.html">Research</a></li>
+        <li class="nav-item"><a class="nav-link" href="projectsz.html">Hobbies</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+<div class="accordion" id="accordionMain">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h3>
+        <button class="button" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Work Experience
+        </button>
+      </h3>
+    </div>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionMain">
+      <div class="card-body">
+        <div class="row no-gutters">
+          <div class="col-sm-4">
+            <!-- <div class="thing" onclick="flip()" id="company1"> -->
+            <div onclick="flip()" id="company1">
+              <div class="front">
+                <img src="e175.jpg" id="company_image" width="90%"/>
+                <span id="company_text"><h2><b>Horizon Air</b></h2>
+                    <h3>Fleet Engineering Intern</h3> <br>
+                    <h4>May 2019 - Aug 2019</h4>
+                </span>
+              </div>
+              <div class="back">
+                <img src="e175.jpg" id="company_image_back" width="90%"/>
+                <span id="company_back_text">
+                  <h2><b>Responsibilities</b></h2><br>
+                  <h6>1. Corresponded with OEMs and the FAA to convert Service Bulletins and Airworthiness Directives into maintenance procedures for Horizon</h6><br>
+                  <h6>2. Performed reliability analysis on multiple systems across the De Havilland Dash 8 Q-400 and Embraer E175-200LR fleet</h6><br>
+                  <h6>3. Created new maintenance procedure in partnership with Embraer to reduce aircraft downtime during routine painting and touch-up of the E175 rudder surface</h6><br>
+                  <h6>4. Travelled across the Pacific Northwest to test hardware at various line maintenance stations</h6>
+
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div onclick="flip2()" id="company2">
+              <div class="front">
+                <img src="gatech.jpg" id="company_image" width="90%"/>
+                <span id="company_text"><h2><b>Georgia Tech</b></h2>
+                                <h3>Undergraduate Researcher</h2> <br>
+                                <h4>May 2018 - Current</h4>
+                </span>
+              </div>
+              <div class="back">
+                <img src="gatech.jpg" id="company_image_back" width="90%"/>
+                <span id="company_back_text">
+                  <h2><b>Accomplishments</b></h2><br>
+                  <h6>3.69 cumulative GPA across 121 credit hours of study</h6><br>
+                  <h6>3.71 major-specific GPA</h6><br>
+                  <h6>Estimated completion of undergraduate degree in aerospace engineering in May 2020</h6><br>
+                  <h6>Estimated completion of master's degree in aerospace engineering in May 2021</h6>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div onclick="flip3()" id="company3">
+              <div class="front">
+                <img src="fa.jpg" id="company_image" width="95%"/>
+                <span id="company_text">
+                  <h2><b>Freund & Associates</b></h2>
+                  <h3>Project Engineering Intern</h3> <br>
+                  <h4>May 2016 - Aug 2017</h4>
+                </span>
+              </div>
+              <div class="back">
+                <img src="fa.jpg" id="company_image_back" width="95%"/>
+                <span id="company_back_text">
+                  <h2><b>Responsibilities</b></h2><br>
+                  <h6>Obtained commerical operating license for small unmanned aircraft through the FAA</h6><br>
+                  <h6>Used a drone to photograph work sites and monitor project progress, working with architects, civil engineers, and project superintendents</h6><br>
+                  <h6>Created CAD renderings of worksites</h6><br>
+                  <h6>Presented photographs and CAD works with clients weekly</h6>
+                </span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="container-fluid">
+  <div class="row dark">
+    <div class="col-sm-12" style="text-align:center">
+      <h4>Interested in more details about me? Feel free to download my résumé
+        below:</h4>
+        <button type="button" class="btn btn-default" aria-label="Left Align" style="border:black">
+          <span class="glyphicon glyphicon-download-alt" aria-hidden="true"> <a href="Resume.pdf">Download</a></span>
+        </button>
+    </div>
+  </div>
+
+</div>
+<script>
+  function flip() {
+    $('#company1').toggleClass('flipped');
+  }
+  function flip2() {
+    $('#company2').toggleClass('flipped');
+  }
+  function flip3() {
+    $('#company3').toggleClass('flipped');
+  }
+</script>
+</body>
+<footer>
+  <div class="footer">
+  <h5>Any Questions? Contact me:</h5>
+  <h5>Cell: (248)-224-6495</h5>
+  <h5>Email: maxgeissbuhler1@gmail.com</h5>
+  <a href="https://www.linkedin.com/in/maxgeissbuhler/"><i class='fab fa-linkedin' style='font-size:36px'></i></a>
+  <a href="mailto:maxgeissbuhler1@gmail.com"><i class='fas fa-mail-bulk' style='font-size:36px; color:red;padding-left:20px'></i></a>
+  <a href="https://www.facebook.com/max.geissbuhler"><i class='fab fa-facebook-square' style='font-size:36px;padding-left:20px'></i></a>
+</div>
+</footer>
+</html>

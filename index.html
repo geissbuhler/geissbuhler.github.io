@@ -3,12 +3,22 @@
 <head>
   <title>Max Geissbuhler's Homepage</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="mystyle.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+  <link rel="stylesheet" type="text/css" href="mystyle.css">
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -25,7 +35,7 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="research.html">Research</a></li>
-        <li class="nav-item"><a class="nav-link" href="projectsz.html">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="projectsz.html">Hobbies</a></li>
       </ul>
     </div>
   </nav>
@@ -79,6 +89,91 @@
     </div>
   </div>
   <div class="card">
+    <div class="card-header" id="headingOne">
+      <h3>
+        <button class="button" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Work Experience
+        </button>
+      </h3>
+    </div>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionMain">
+      <div class="card-body">
+        <div class="row no-gutters">
+          <div class="col-sm-4">
+            <!-- <div class="thing" onclick="flip()" id="company1"> -->
+            <div onclick="flip()" id="company1">
+              <div class="front">
+                <img src="e175.jpg" id="company_image" width="90%"/>
+                <span id="company_text"><h2><b>Horizon Air</b></h2>
+                    <h3>Fleet Engineering Intern</h3> <br>
+                    <h4>May 2019 - Aug 2019</h4>
+                </span>
+              </div>
+              <div class="back">
+                <img src="e175.jpg" id="company_image_back" width="90%"/>
+                <span id="company_back_text">
+                  <h2><b>Responsibilities</b></h2><br>
+                  <h6>1. Corresponded with OEMs and the FAA to convert Service Bulletins and Airworthiness Directives into maintenance procedures for Horizon</h6><br>
+                  <h6>2. Performed reliability analysis on multiple systems across the De Havilland Dash 8 Q-400 and Embraer E175-200LR fleet</h6><br>
+                  <h6>3. Created new maintenance procedure in partnership with Embraer to reduce aircraft downtime during routine painting and touch-up of the E175 rudder surface</h6><br>
+                  <h6>4. Travelled across the Pacific Northwest to test hardware at various line maintenance stations</h6>
+
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div onclick="flip2()" id="company2">
+              <div class="front">
+                <img src="gatech.jpg" id="company_image" width="90%"/>
+                <span id="company_text"><h2><b>Georgia Tech</b></h2>
+                                <h3>Undergraduate Researcher</h2> <br>
+                                <h4>May 2018 - Current</h4>
+                </span>
+              </div>
+              <div class="back">
+                <img src="gatech.jpg" id="company_image_back" width="90%"/>
+                <span id="company_back_text">
+                  <h2><b>Accomplishments</b></h2><br>
+                  <h6>3.69 cumulative GPA across 121 credit hours of study</h6><br>
+                  <h6>3.71 major-specific GPA</h6><br>
+                  <h6>Estimated completion of undergraduate degree in aerospace engineering in May 2020</h6><br>
+                  <h6>Estimated completion of master's degree in aerospace engineering in May 2021</h6>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div onclick="flip3()" id="company3">
+              <div class="front">
+                <img src="fa.jpg" id="company_image" width="95%"/>
+                <span id="company_text">
+                  <h2><b>Freund & Associates</b></h2>
+                  <h3>Project Engineering Intern</h3> <br>
+                  <h4>May 2016 - Aug 2017</h4>
+                </span>
+              </div>
+              <div class="back">
+                <img src="fa.jpg" id="company_image_back" width="95%"/>
+                <span id="company_back_text">
+                  <h2><b>Responsibilities</b></h2><br>
+                  <h6>Obtained commerical operating license for small unmanned aircraft through the FAA</h6><br>
+                  <h6>Used a drone to photograph work sites and monitor project progress, working with architects, civil engineers, and project superintendents</h6><br>
+                  <h6>Created CAD renderings of worksites</h6><br>
+                  <h6>Presented photographs and CAD works with clients weekly</h6>
+                </span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
     <div class="card-header" id="headingFour">
       <h4>
         <button class="button collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
@@ -101,7 +196,7 @@
           </div>
           <div class="col-sm-3" id="skillTwo">
             <h4>
-              SolidWorks
+              GridPro
             </h4>
           </div>
           <div class="col-sm-3" id="skillOne">
@@ -113,7 +208,7 @@
         <div class="row dark">
           <div class="col-sm-3" id="skillOne">
             <h4>
-              Mathematica
+              SolidWorks
             </h4>
           </div>
           <div class="col-sm-3" id="skillTwo">
@@ -170,56 +265,7 @@
       </div>
     </div>
   </div>
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h3>
-        <button class="button" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Work Experience
-        </button>
-      </h3>
-    </div>
 
-    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionMain">
-      <!-- <div class="row acccordion-buffer"></div> -->
-    <!-- <div class="container-fluid">
-      <div class="row top-buffers"></div>
-      <div class="row dark">
-        <div class="col-sm-12">
-          <h1 style="text-align:center;" >Work Experience:</h2>
-        </div>
-      </div> -->
-      <div class="card-body">
-        <div class="row dark">
-          <div class="col-sm-4">
-            <div id="company">
-              <img src="horizon.jpg" id="company_image" width="100%"/>
-              <span id="company_text"><h2><b>Horizon Air</b></h2>
-                              <h3>Fleet Engineering Intern</h2> <br>
-                              <h4>May 2019 - Aug 2019</h4></span>
-            </div>
-          </div>
-
-          <div class="col-sm-4">
-            <div id="company">
-              <img src="gatech.jpg" id="company_image" width="100%"/>
-              <span id="company_text"><h2><b>Georgia Tech</b></h2>
-                              <h3>Undergraduate Researcher</h2> <br>
-                              <h4>May 2018 - Current</h4></span>
-            </div>
-          </div>
-
-          <div class="col-sm-4">
-            <div id="company">
-              <img src="fa.jpg" id="company_image" width="100%"/>
-              <span id="company_text"><h2><b>Freund & Associates</b></h2>
-                              <h3>Project Engineering Intern</h2> <br>
-                              <h4>May 2016 - Aug 2017</h4></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="card">
     <div class="card-header" id="headingTwo">
       <h4>
@@ -243,13 +289,6 @@
               <h3><b>Senior</b></h3>
               <h4>Class Standing</h4>
             </div>
-                <!-- <h4>
-                  <ul>
-                    <li>Junior at Georgia Tech</li>
-                    <li>Major is Aerospace Engineering</li>
-                    <li> GPA: 3.65 / 4.00</li>
-                  </ul>
-                </h4> -->
           </div>
           <div class="col-sm-4">
             <div id="item2">
@@ -260,7 +299,7 @@
 
           <div class="col-sm-4">
             <div id="item1">
-              <h3><b>3.65/4.00</b></h3>
+              <h3><b>3.68/4.00</b></h3>
               <h4>Cumulative GPA</h4>
             </div>
           </div>
@@ -270,8 +309,8 @@
         <div class="row no-gutters">
           <div class="col-sm-4">
             <div id="item2">
-              <h3><b>105 Credit Hours</b></h3>
-              <h4>Completed as of May 2019</h4>
+              <h3><b>121 Credit Hours</b></h3>
+              <h4>Completed as of January 2019</h4>
             </div>
           </div>
             <!-- <h4>
@@ -353,9 +392,17 @@
   </div>
 
 </div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>
+  function flip() {
+    $('#company1').toggleClass('flipped');
+  }
+  function flip2() {
+    $('#company2').toggleClass('flipped');
+  }
+  function flip3() {
+    $('#company3').toggleClass('flipped');
+  }
+</script>
 </body>
 <footer>
   <div class="footer">
