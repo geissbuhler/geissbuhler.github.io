@@ -79,6 +79,12 @@ input[type=submit]:hover {
 .company {
   text-align: center;
 }
+#bio_text {
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 #company_text {
 position:relative;
@@ -145,6 +151,13 @@ position: absolute;
   transform: rotateY( 180deg );
 }
 
+.logo-img {
+  width: 100%;
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 .pageContentWrapper{
   margin-bottom:125px;/* Height of footer*/
@@ -286,7 +299,7 @@ h1 {
   background-color: #e6ecff;
   text-align: center;
   height: auto;
-  padding: 1% 0;
+  padding: 5% 0%;
 }
 
 #skillTwo{
@@ -294,7 +307,7 @@ h1 {
   background-color: #ccdaff;
   text-align: center;
   height: auto;
-  padding: 1% 0;
+  padding: 5% 0%;
 }
 
 
@@ -383,18 +396,6 @@ div a{
   display: inline-block;
   font-size: 30px;
 }
-
-/* div cent{
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
-  margin:auto;
-  text-align: center;
-  width: 100%;
-  display: inline-block;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  vertical-align: middle;
-} */
 
 .services-section img {
     margin: auto;
