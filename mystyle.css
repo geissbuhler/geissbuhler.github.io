@@ -59,9 +59,9 @@ input[type=submit]:hover {
 
 
 
-@media only screen and (max-device-width: 1366px) {
+@media only screen {
   .parallax {
-    background-image: url('me_wide4.png');
+    background-image: url('me.png');
     height: 450px;
     background-attachment: scroll;
     background-position: center;
